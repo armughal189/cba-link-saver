@@ -1,0 +1,13 @@
+package io.multidev134.link_saver.core.database.entities
+
+import androidx.room3.Entity
+import androidx.room3.PrimaryKey
+
+@Entity(tableName = "links")
+data class LinkEntity(
+  @PrimaryKey(autoGenerate = true)
+  val id: Int = 0,
+  val title: String,
+  val desc: String = "",
+  val url: String
+)
