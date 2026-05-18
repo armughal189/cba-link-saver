@@ -1,7 +1,7 @@
 package io.multidev134.link_saver.core.navigation
 
 import androidx.navigation3.runtime.NavKey
-import io.multidev134.link_saver.core.database.entities.LinkEntity
+import io.multidev134.link_saver.core.database.LinkEntity
 import kotlinx.serialization.Serializable
 
 @Serializable

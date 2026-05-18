@@ -14,8 +14,9 @@ import io.multidev134.reuse_hub.ui.widget.CbaTextView
 fun AboutScreen() {
   CbaLayout("About") {
     CbaColumn {
-      CbaTextView("A simple and efficient Application to save and manage your favorite web links. Keep your resources organized and accessible anytime.")
+      CbaTextView("A Free, Open Source and Accessible Application that remembers and Allows you Open, Copy and Share your Links with eas.")
       CbaTextView("Developed by Abdul Rehman Mughal (The Prince) from \"Code and Big Apple\"")
+      CbaLink("View Source code on GitHub", "https://github.com/armughal189/cba-link-saver")
       Spacer(Modifier.height(8.dp))
       CbaTextView(
         text = "Our Social Media Handles",

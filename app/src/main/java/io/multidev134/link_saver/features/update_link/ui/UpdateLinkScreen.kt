@@ -9,7 +9,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.fillMaxWidth
 import io.multidev134.link_saver.core.composition.LocalBackStack
-import io.multidev134.link_saver.core.database.entities.LinkEntity
+import io.multidev134.link_saver.core.database.LinkEntity
+import io.multidev134.link_saver.core.utils.validateUrl
 import io.multidev134.link_saver.core.view_models.LinksVM
 import io.multidev134.reuse_hub.ui.widget.CbaButton
 import io.multidev134.reuse_hub.ui.widget.CbaColumn
@@ -50,12 +51,13 @@ fun UpdateLinkScreen(
       )
       CbaButton(
         label = "Update Link",
+        enabled = title.isNotBlank() && url.isNotBlank(),
         onClick = {
           vm.modLink(
             link.copy(
-              title = title,
-              desc = desc,
-              url = url
+              title = title.trim(),
+              desc = desc.trim(),
+              url = validateUrl(url.trim())
             )
           )
           backStack.removeLastOrNull()

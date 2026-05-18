@@ -9,7 +9,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import io.multidev134.link_saver.core.composition.LocalBackStack
-import io.multidev134.link_saver.core.database.entities.LinkEntity
+import io.multidev134.link_saver.core.database.LinkEntity
 import io.multidev134.link_saver.core.navigation.NavRoutes
 import io.multidev134.link_saver.features.delete_link.ui.DeleteLinkDlg
 import io.multidev134.reuse_hub.ui.widget.CbaButton
@@ -27,6 +27,11 @@ fun LinkDetailsScreen(
   val backStack = LocalBackStack.current
   val context = LocalContext.current
   var isShowingDeleteDlg by rememberSaveable { mutableStateOf(false) }
+  val url = if (link.url.length >= 50) {
+    link.url.substring(0, 50) + "..."
+  } else {
+    link.url
+  }
 
   CbaLayout(
     title = "Link Info",
@@ -36,7 +41,7 @@ fun LinkDetailsScreen(
     CbaColumn {
       CbaTextView(link.title, modifier = Modifier.fillMaxWidth())
       CbaTextView(link.desc, modifier = Modifier.fillMaxWidth())
-      CbaTextView(link.url, modifier = Modifier.fillMaxWidth())
+      CbaTextView(url, modifier = Modifier.fillMaxWidth())
       CbaButton(
         label = "Open Link",
         onClick = {

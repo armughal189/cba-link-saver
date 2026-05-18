@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import io.multidev134.link_saver.core.composition.LocalBackStack
-import io.multidev134.link_saver.core.database.entities.LinkEntity
+import io.multidev134.link_saver.core.database.LinkEntity
 import io.multidev134.link_saver.core.navigation.NavRoutes
 import io.multidev134.link_saver.core.view_models.LinksVM
 import io.multidev134.link_saver.features.delete_link.ui.DeleteLinkDlg

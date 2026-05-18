@@ -16,6 +16,7 @@ fun CbaColumn(content: @Composable () -> Unit) {
     verticalArrangement = Arrangement.Top,
     modifier = Modifier
       .fillMaxSize()
+
       .padding(24.dp)
   ) {
     content()

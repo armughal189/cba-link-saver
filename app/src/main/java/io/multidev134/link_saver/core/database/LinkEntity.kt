@@ -1,4 +1,4 @@
-package io.multidev134.link_saver.core.database.entities
+package io.multidev134.link_saver.core.database
 
 import androidx.room3.Entity
 import androidx.room3.PrimaryKey

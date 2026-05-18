@@ -1,7 +1,7 @@
 package io.multidev134.link_saver.features.delete_link.ui
 import androidx.compose.runtime.Composable
 import io.multidev134.link_saver.core.composition.LocalBackStack
-import io.multidev134.link_saver.core.database.entities.LinkEntity
+import io.multidev134.link_saver.core.database.LinkEntity
 import io.multidev134.link_saver.core.navigation.NavRoutes
 import io.multidev134.link_saver.core.view_models.LinksVM
 import io.multidev134.reuse_hub.ui.widget.CbaAlertDialog

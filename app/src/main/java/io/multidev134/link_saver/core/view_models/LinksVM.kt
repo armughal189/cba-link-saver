@@ -2,8 +2,8 @@ package io.multidev134.link_saver.core.view_models
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.multidev134.link_saver.core.database.daos.LinkDao
-import io.multidev134.link_saver.core.database.entities.LinkEntity
+import io.multidev134.link_saver.core.database.LinkDao
+import io.multidev134.link_saver.core.database.LinkEntity
 import kotlinx.coroutines.launch
 import org.koin.core.annotation.KoinViewModel
 
