@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 fun CbaButton(
   label: String,
   onClick: () -> Unit,
-  @SuppressLint("ModifierParameter") modifier: Modifier = Modifier.fillMaxWidth(),
+  @SuppressLint("ModifierParameter") modifier: Modifier = Modifier,
   enabled: Boolean = true
 ) {
   Button(onClick = {

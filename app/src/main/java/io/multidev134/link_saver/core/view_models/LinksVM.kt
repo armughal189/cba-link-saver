@@ -24,9 +24,9 @@ class LinksVM(
     }
   }
 
-  fun removeLink(link: LinkEntity) {
+  fun deleteLink(link: LinkEntity) {
     viewModelScope.launch {
-      dao.removeLink(link)
+      dao.deleteLink(link)
     }
   }
 }

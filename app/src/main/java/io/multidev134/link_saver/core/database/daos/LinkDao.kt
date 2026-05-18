@@ -20,5 +20,5 @@ interface LinkDao {
   suspend fun modLink(link: LinkEntity)
 
   @Delete
-  suspend fun removeLink(link: LinkEntity)
+  suspend fun deleteLink(link: LinkEntity)
 }

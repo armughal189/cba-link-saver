@@ -10,16 +10,16 @@ import androidx.compose.ui.Modifier
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CbaClickableView(
-    text: String,
-    onClick: () -> Unit,
-    onLongClick: (() -> Unit)? = null,
-    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier.fillMaxWidth()
+  text: String,
+  onClick: () -> Unit,
+  onLongClick: (() -> Unit)? = null,
+  @SuppressLint("ModifierParameter") modifier: Modifier = Modifier.fillMaxWidth()
 ) {
-    CbaTextView(
-        text = text,
-        modifier = modifier.combinedClickable(
-            onClick = onClick,
-            onLongClick = onLongClick
-        )
+  CbaTextView(
+    text = text,
+    modifier = modifier.combinedClickable(
+      onClick = onClick,
+      onLongClick = onLongClick
     )
+  )
 }

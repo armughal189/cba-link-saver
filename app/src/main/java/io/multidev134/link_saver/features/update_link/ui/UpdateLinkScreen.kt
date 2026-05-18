@@ -1,4 +1,4 @@
-package io.multidev134.link_saver.features.add_link.ui
+package io.multidev134.link_saver.features.update_link.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -18,16 +18,17 @@ import io.multidev134.reuse_hub.ui.widget.CbaTextField
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun AddLinkScreen(
+fun UpdateLinkScreen(
+  link: LinkEntity,
   vm: LinksVM = koinViewModel()
 ) {
   val backStack = LocalBackStack.current
-  var title by rememberSaveable { mutableStateOf("") }
-  var desc by rememberSaveable { mutableStateOf("") }
-  var url by rememberSaveable { mutableStateOf("") }
+  var title by rememberSaveable { mutableStateOf(link.title) }
+  var desc by rememberSaveable { mutableStateOf(link.desc) }
+  var url by rememberSaveable { mutableStateOf(link.url) }
 
   CbaLayout(
-    title = "Add Link",
+    title = "Update Link",
     onBackPress = { backStack.removeLastOrNull() }
   ) {
     CbaColumn {
@@ -48,10 +49,10 @@ fun AddLinkScreen(
         keyboardType = KeyboardType.Uri
       )
       CbaButton(
-        label = "Save Link",
+        label = "Update Link",
         onClick = {
-          vm.addLink(
-            LinkEntity(
+          vm.modLink(
+            link.copy(
               title = title,
               desc = desc,
               url = url

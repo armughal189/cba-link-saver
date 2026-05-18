@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun CbaTextView(
   text: String,
-  @SuppressLint("ModifierParameter") modifier: Modifier = Modifier.fillMaxWidth(),
+  @SuppressLint("ModifierParameter") modifier: Modifier = Modifier,
   isHeading: Boolean = false,
   level: Int = 1
 ) {

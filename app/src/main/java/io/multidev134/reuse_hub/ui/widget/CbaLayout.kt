@@ -15,16 +15,28 @@ import androidx.compose.ui.semantics.semantics
 @Composable
 fun CbaLayout(
   title: String,
+  onBackPress: (() -> Unit)? = null,
   content: @Composable () -> Unit
 ) {
   Scaffold(
     topBar = {
-      TopAppBar(title = {
-        CbaTextView(
-          text = title,
-          isHeading = true
-        )
-      })
+      TopAppBar(
+        title = {
+          CbaTextView(
+            text = title,
+            isHeading = true
+          )
+        },
+        navigationIcon = {
+          if (onBackPress != null) {
+            CbaButton(
+              label = "Back",
+              onClick = onBackPress,
+              modifier = Modifier
+            )
+          }
+        }
+      )
     },
     modifier = Modifier
       .fillMaxSize()
