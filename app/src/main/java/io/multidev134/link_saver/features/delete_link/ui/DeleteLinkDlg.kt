@@ -1,32 +1,27 @@
 package io.multidev134.link_saver.features.delete_link.ui
-import androidx.compose.runtime.Composable
-import io.multidev134.link_saver.core.composition.LocalBackStack
+
+import android.view.ViewGroup
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.multidev134.link_saver.core.database.LinkEntity
 import io.multidev134.link_saver.core.navigation.NavRoutes
 import io.multidev134.link_saver.core.view_models.LinksVM
-import io.multidev134.reuse_hub.ui.widget.CbaAlertDialog
-import org.koin.compose.viewmodel.koinViewModel
 
-@Composable
-fun DeleteLinkDlg(
-  isShowing: Boolean,
+fun ViewGroup.deleteLinkDlg(
+  vm: LinksVM,
   link: LinkEntity,
-  onDismiss: () -> Unit,
-  shouldNavigateBack: Boolean = true,
-  vm: LinksVM = koinViewModel()
+  backStack: NavBackStack<NavKey>
 ) {
-  val backStack = LocalBackStack.current
-  CbaAlertDialog(
-    isShowing = isShowing,
-    title = "Delete Link",
-    message = "Are you sure you want to delete '${link.title}'?",
-    onNegativeBtnClick = onDismiss,
-    onPositiveBtnClick = {
+  MaterialAlertDialogBuilder(this.context)
+    .setTitle("Delete Link")
+    .setMessage("Are you sure you want to delete '${link.title}'?")
+    .setPositiveButton("Delete") { _, _ ->
       vm.deleteLink(link)
-      onDismiss()
-      if (shouldNavigateBack) {
+      if (backStack.last() is NavRoutes.LinkDetails) {
         backStack.removeLastOrNull()
       }
     }
-  )
+    .setNegativeButton("Cancel", null)
+    .show()
 }

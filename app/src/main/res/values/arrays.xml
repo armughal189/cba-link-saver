@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="theme_mode_entries">
+    <item>System Default</item>
+    <item>Auto</item>
+    <item>Dark</item>
+    <item>Lite</item>
+  </string-array>
+  <string-array name="theme_mode_values">
+    <item>system</item>
+    <item>auto</item>
+    <item>dark</item>
+    <item>lite</item>
+  </string-array>
+</resources>

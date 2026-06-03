@@ -8,8 +8,8 @@ import kotlinx.serialization.Serializable
 sealed class NavRoutes: NavKey {
   @Serializable data object Welcome: NavRoutes()
   @Serializable data object Home: NavRoutes()
-  @Serializable data object About: NavRoutes()
-  @Serializable data object AddLink: NavRoutes()
+  @Serializable data object More: NavRoutes()
   @Serializable data class LinkDetails(val link: LinkEntity): NavRoutes()
-  @Serializable data class UpdateLink(val link: LinkEntity): NavRoutes()
+  @Serializable data object Settings: NavRoutes()
+  @Serializable data object WhatsNew: NavRoutes()
 }

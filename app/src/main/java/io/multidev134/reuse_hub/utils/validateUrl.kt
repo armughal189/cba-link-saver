@@ -1,4 +1,4 @@
-package io.multidev134.link_saver.core.utils
+package io.multidev134.reuse_hub.utils
 
 fun validateUrl(url: String): String {
   var finalUrl = url.trim()

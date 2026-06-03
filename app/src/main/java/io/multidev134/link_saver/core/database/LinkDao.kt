@@ -20,4 +20,10 @@ interface LinkDao {
 
   @Delete
   suspend fun deleteLink(link: LinkEntity)
+
+  @Query("DELETE FROM links")
+  suspend fun clearLinks()
+
+  @Query("DELETE FROM sqlite_sequence WHERE name = 'links'")
+  suspend fun resetPrimaryKey()
 }

@@ -1,32 +1,33 @@
 package io.multidev134.link_saver.features.link_details.ui
 
+import android.view.ViewGroup
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import io.multidev134.link_saver.core.composition.LocalBackStack
 import io.multidev134.link_saver.core.database.LinkEntity
-import io.multidev134.link_saver.core.navigation.NavRoutes
-import io.multidev134.link_saver.features.delete_link.ui.DeleteLinkDlg
+import io.multidev134.link_saver.core.view_models.LinksVM
+import io.multidev134.link_saver.features.delete_link.ui.deleteLinkDlg
+import io.multidev134.link_saver.features.share_link.ui.shareLinkDlg
+import io.multidev134.link_saver.features.update_link.ui.updateLinkDlg
 import io.multidev134.reuse_hub.ui.widget.CbaButton
 import io.multidev134.reuse_hub.ui.widget.CbaColumn
 import io.multidev134.reuse_hub.ui.widget.CbaLayout
 import io.multidev134.reuse_hub.ui.widget.CbaTextView
 import io.multidev134.reuse_hub.utils.copyToClipboard
 import io.multidev134.reuse_hub.utils.openUrl
-import io.multidev134.reuse_hub.utils.shareText
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun LinkDetailsScreen(
-  link: LinkEntity
+  link: LinkEntity,
+  vm: LinksVM = koinViewModel()
 ) {
   val backStack = LocalBackStack.current
   val context = LocalContext.current
-  var isShowingDeleteDlg by rememberSaveable { mutableStateOf(false) }
+  val view = LocalView.current as ViewGroup
   val url = if (link.url.length >= 50) {
     link.url.substring(0, 50) + "..."
   } else {
@@ -59,32 +60,24 @@ fun LinkDetailsScreen(
       CbaButton(
         label = "Share Link",
         onClick = {
-          shareText(context, link.url)
+          view.shareLinkDlg(link)
         },
         modifier = Modifier.fillMaxWidth()
       )
       CbaButton(
         label = "Update Link",
         onClick = {
-          backStack.add(NavRoutes.UpdateLink(link))
+          view.updateLinkDlg(vm, link)
         },
         modifier = Modifier.fillMaxWidth()
       )
       CbaButton(
         label = "Delete Link",
         onClick = {
-          isShowingDeleteDlg = true
+          view.deleteLinkDlg(vm, link, backStack)
         },
         modifier = Modifier.fillMaxWidth()
       )
     }
   }
-
-  DeleteLinkDlg(
-    isShowing = isShowingDeleteDlg,
-    link = link,
-    onDismiss = {
-      isShowingDeleteDlg = false
-    }
-  )
 }
