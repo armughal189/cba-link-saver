@@ -1,4 +1,4 @@
-package io.multidev134.reuse_hub.ui.widget
+package io.multidev134.reuse_hub.ui.widget.layout
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,6 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.paneTitle
 import androidx.compose.ui.semantics.semantics
+import io.multidev134.reuse_hub.ui.widget.base.CbaButton
+import io.multidev134.reuse_hub.ui.widget.base.CbaTextView
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,7 +26,8 @@ fun CbaLayout(
         title = {
           CbaTextView(
             text = title,
-            isHeading = true
+            isHeading = true,
+            modifier = Modifier
           )
         },
         navigationIcon = {
@@ -35,8 +38,7 @@ fun CbaLayout(
               modifier = Modifier
             )
           }
-        }
-      )
+        })
     },
     modifier = Modifier
       .fillMaxSize()
@@ -48,7 +50,7 @@ fun CbaLayout(
         .fillMaxSize()
         .padding(innerPadding)
     ) {
-      content()
+      CbaColumn { content() }
     }
   }
 }

@@ -6,10 +6,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.multidev134.link_saver.core.composition.LocalBackStack
-import io.multidev134.reuse_hub.ui.widget.CbaColumn
-import io.multidev134.reuse_hub.ui.widget.CbaLayout
-import io.multidev134.reuse_hub.ui.widget.CbaTextView
+import io.multidev134.link_saver.core.navigation.LocalBackStack
+import io.multidev134.reuse_hub.ui.widget.layout.CbaColumn
+import io.multidev134.reuse_hub.ui.widget.layout.CbaLayout
+import io.multidev134.reuse_hub.ui.widget.base.CbaTextView
 import io.multidev134.reuse_hub.utils.formatDate
 import java.time.LocalDate
 

@@ -1,11 +1,13 @@
-package io.multidev134.reuse_hub.ui.widget
+package io.multidev134.reuse_hub.ui.widget.base
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -14,9 +16,10 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun CbaTextView(
   text: String,
-  @SuppressLint("ModifierParameter") modifier: Modifier = Modifier,
+  @SuppressLint("ModifierParameter") modifier: Modifier = Modifier.fillMaxWidth(),
   isHeading: Boolean = false,
-  level: Int = 1
+  level: Int = 1,
+  liveRegionMode: LiveRegionMode? = null
 ) {
   var updateModifier = modifier
   var fontSize = 16.sp
@@ -25,10 +28,15 @@ fun CbaTextView(
     fontSize = when (level) {
       1 -> 16.sp
       2 -> 18.sp
-      else -> 24.sp
+      else -> 12.sp
     }
     fontWeight = FontWeight.Bold
     updateModifier = updateModifier.semantics { heading() }
+  }
+  if (liveRegionMode != null) {
+    updateModifier = updateModifier.semantics {
+      liveRegion = liveRegionMode
+    }
   }
   Text(
     text = text,

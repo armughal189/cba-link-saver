@@ -33,7 +33,6 @@ class LinksVM(
   fun clearDb() {
     viewModelScope.launch {
       dao.clearLinks()
-      dao.resetPrimaryKey()
     }
   }
 }

@@ -8,7 +8,7 @@ import io.multidev134.link_saver.R
 import io.multidev134.link_saver.core.database.LinkEntity
 import io.multidev134.reuse_hub.utils.validateUrl
 import io.multidev134.link_saver.core.view_models.LinksVM
-import io.multidev134.reuse_hub.ui.widget.cbaXTextField
+import io.multidev134.reuse_hub.ui.widget.legacy.cbaXTextField
 import io.multidev134.reuse_hub.utils.inflateLayout
 
 fun ViewGroup.updateLinkDlg(

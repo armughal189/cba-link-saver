@@ -1,4 +1,4 @@
-package io.multidev134.reuse_hub.ui.widget
+package io.multidev134.reuse_hub.ui.widget.base
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi

@@ -34,9 +34,6 @@ android {
   buildFeatures {
     compose = true
   }
-  lint {
-    disable += mutableSetOf("Instantiatable")
-  }
 }
 
 dependencies {
@@ -60,5 +57,10 @@ dependencies {
   implementation(libs.koin.compose)
   implementation(libs.koin.compose.viewmodel)
   implementation(libs.material)
+  implementation(libs.jnanoid)
+  implementation(platform(libs.bom))
+  implementation(libs.postgrest.kt)
+  implementation(libs.auth.kt)
+  implementation(libs.ktor.client.android)
   ksp(libs.androidx.room3.compiler)
 }

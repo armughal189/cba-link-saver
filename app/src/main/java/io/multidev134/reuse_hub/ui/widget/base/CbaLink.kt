@@ -1,4 +1,4 @@
-package io.multidev134.reuse_hub.ui.widget
+package io.multidev134.reuse_hub.ui.widget.base
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext

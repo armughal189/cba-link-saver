@@ -1,4 +1,4 @@
-package io.multidev134.reuse_hub.ui.widget
+package io.multidev134.reuse_hub.ui.widget.base
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,15 +10,17 @@ import androidx.compose.ui.Modifier
 fun CbaButton(
   label: String,
   onClick: () -> Unit,
-  @SuppressLint("ModifierParameter") modifier: Modifier = Modifier,
+  @SuppressLint("ModifierParameter") modifier: Modifier = Modifier.fillMaxWidth(),
   enabled: Boolean = true
 ) {
-  Button(onClick = {
-    onClick()
-  },
+  Button(
+    onClick = { onClick() },
     enabled = enabled,
     modifier = modifier
   ) {
-    CbaTextView(label)
+    CbaTextView(
+      text = label,
+      modifier = modifier
+    )
   }
 }

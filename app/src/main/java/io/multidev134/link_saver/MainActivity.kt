@@ -10,7 +10,7 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import androidx.preference.PreferenceManager
-import io.multidev134.link_saver.core.composition.LocalBackStack
+import io.multidev134.link_saver.core.navigation.LocalBackStack
 import io.multidev134.link_saver.core.navigation.NavRoutes
 import io.multidev134.link_saver.core.navigation.navItems
 import io.multidev134.link_saver.features.more.ui.MoreScreen
@@ -19,6 +19,7 @@ import io.multidev134.link_saver.features.links_list.ui.LinksListScreen
 import io.multidev134.link_saver.features.settings.ui.SettingsScreen
 import io.multidev134.link_saver.features.settings.ui.handleThemeMode
 import io.multidev134.link_saver.features.whats_new.WhatsNewScreen
+import io.multidev134.link_saver.features.auth.signup.SignupScreen
 
 class MainActivity : FragmentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +56,9 @@ class MainActivity : FragmentActivity() {
             entryProvider = entryProvider {
               entry<NavRoutes.Home> {
                 LinksListScreen()
+              }
+              entry<NavRoutes.Signup> {
+                SignupScreen()
               }
               entry<NavRoutes.More> {
                 MoreScreen()

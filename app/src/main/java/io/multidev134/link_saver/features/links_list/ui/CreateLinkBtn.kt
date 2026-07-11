@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.ui.platform.LocalView
 import io.multidev134.link_saver.core.view_models.LinksVM
 import io.multidev134.link_saver.features.add_link.ui.addLinkDlg
-import io.multidev134.reuse_hub.ui.widget.CbaButton
+import io.multidev134.reuse_hub.ui.widget.base.CbaButton
 
 @Composable
 fun CreateLinkBtn(vm: LinksVM) {
