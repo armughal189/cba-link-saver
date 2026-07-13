@@ -30,6 +30,7 @@ fun SignupScreen(
   val context = LocalContext.current
   val authState by vm.authState
   var email by rememberSaveable { mutableStateOf("") }
+  var displayName by rememberSaveable { mutableStateOf("") }
   var password by rememberSaveable { mutableStateOf("") }
   var confirmPassword by rememberSaveable { mutableStateOf("") }
   var showPassword by rememberSaveable { mutableStateOf(false) }
@@ -41,6 +42,7 @@ fun SignupScreen(
   }
 
   val canSignUp = email.isNotEmpty() &&
+      displayName.isNotEmpty() &&
       password.isNotEmpty() &&
       confirmPassword.isNotEmpty() &&
       errorMsg.isEmpty() &&
@@ -69,6 +71,11 @@ fun SignupScreen(
       backStack.removeLastOrNull()
     }) {
     CbaTextView("Let's create your Account")
+    CbaTextField(
+      label = "Display Name:",
+      value = displayName,
+      onValueChange = { displayName = it }
+    )
     CbaTextField(
       label = "Email:",
       value = email,
@@ -102,7 +109,7 @@ fun SignupScreen(
         label = "SignUp",
         enabled = canSignUp,
         onClick = {
-          vm.signup(email, password)
+          vm.signup(email, password, displayName)
         })
     }
   }

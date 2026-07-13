@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.providers.builtin.Email
+import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 import org.koin.core.annotation.KoinViewModel
 
@@ -15,14 +16,17 @@ class AuthVM(
 ): ViewModel() {
   var authState = mutableStateOf<AuthState>(AuthState.Idle)
     private set
-  fun signup(email: String, password: String) {
+  fun signup(email: String, password: String, displayName: String) {
     viewModelScope.launch {
       authState.value = AuthState.Loading
       try {
-        client.auth.signUpWith(Email) {
+        val result = client.auth.signUpWith(Email) {
           this.email = email
           this.password = password
         }
+        val userId = result?.id ?: client.auth.currentUserOrNull()?.id ?: throw Exception("Could not retrieve user ID.")
+        val profile = Profile(id = userId, display_name = displayName)
+        client.from("profiles").insert(profile)
         authState.value = AuthState.Success
       } catch (e: Exception) {
         authState.value = AuthState.Error(e.message ?: "Signup Failed because of unknown Reason.")
