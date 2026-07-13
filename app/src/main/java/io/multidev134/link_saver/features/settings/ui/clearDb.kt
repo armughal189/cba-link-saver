@@ -2,11 +2,11 @@ package io.multidev134.link_saver.features.settings.ui
 
 import android.content.Context
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import io.multidev134.link_saver.core.view_models.LinksVM
+import io.multidev134.link_saver.features.settings.SettingsVM
 import io.multidev134.reuse_hub.utils.toast
 
 fun Context.clearDb(
-  vm: LinksVM
+  vm: SettingsVM
 ) {
   MaterialAlertDialogBuilder(this)
     .setTitle("Clear Database")

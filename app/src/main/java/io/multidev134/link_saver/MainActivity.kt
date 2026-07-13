@@ -36,17 +36,22 @@ class MainActivity : FragmentActivity() {
       CompositionLocalProvider(LocalBackStack provides backStack) {
         NavigationSuiteScaffold(
           navigationSuiteItems = {
-            navItems.forEach { navItem ->
-              item(
-                selected = currentRoute == navItem.route,
-                onClick = {
-                  if (currentRoute != navItem.route) {
-                    backStack.clear()
-                    backStack.add(navItem.route)
-                  }
-                },
-                icon = { Icon(navItem.icon, contentDescription = navItem.label) }
-              )
+            if (currentRoute != NavRoutes.Welcome &&
+              currentRoute != NavRoutes.Signup &&
+              currentRoute != NavRoutes.Login
+            ) {
+              navItems.forEach { navItem ->
+                item(
+                  selected = currentRoute == navItem.route,
+                  onClick = {
+                    if (currentRoute != navItem.route) {
+                      backStack.clear()
+                      backStack.add(navItem.route)
+                    }
+                  },
+                  icon = { Icon(navItem.icon, contentDescription = navItem.label) }
+                )
+              }
             }
           }) {
           NavDisplay(
