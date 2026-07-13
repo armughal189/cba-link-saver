@@ -16,8 +16,8 @@ android {
     applicationId = "io.multidev134.link_saver"
     minSdk = 28
     targetSdk = 37
-    versionCode = 1
-    versionName = "1.0.0"
+    versionCode = 15
+    versionName = "2.0.0"
   }
 
   buildTypes {
