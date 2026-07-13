@@ -11,10 +11,11 @@ import io.multidev134.link_saver.core.database.LinkDao
 import io.multidev134.link_saver.features.settings.ui.handleThemeMode
 import kotlinx.coroutines.launch
 import org.koin.core.annotation.KoinViewModel
+import androidx.core.content.edit
 
 @KoinViewModel
 class SettingsVM(
-  private val context: Context,
+  context: Context,
   private val dao: LinkDao
 ) : ViewModel() {
   private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
@@ -24,7 +25,7 @@ class SettingsVM(
 
   fun setThemeMode(newThemeMode: String) {
     themeMode = newThemeMode
-    prefs.edit().putString("theme_mode", newThemeMode).apply()
+    prefs.edit { putString("theme_mode", newThemeMode) }
     handleThemeMode(newThemeMode)
   }
 
