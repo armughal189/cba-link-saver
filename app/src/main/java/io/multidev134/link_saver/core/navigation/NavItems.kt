@@ -3,6 +3,7 @@ package io.multidev134.link_saver.core.navigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
 
@@ -26,7 +27,11 @@ val navItems = listOf(
   NavItem(
     route = NavRoutes.Settings,
     label = "Settings",
-
     icon = Icons.Default.Settings
+  ),
+  NavItem(
+    route = NavRoutes.Profile,
+    label = "Profile",
+    icon = Icons.Default.Person
   )
 )

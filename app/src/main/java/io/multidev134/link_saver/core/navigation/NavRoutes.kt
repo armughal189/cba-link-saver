@@ -13,4 +13,5 @@ interface  NavRoutes: NavKey {
   @Serializable data class LinkDetails(val link: LinkEntity): NavRoutes
   @Serializable data object Settings: NavRoutes
   @Serializable data object WhatsNew: NavRoutes
+  @Serializable data object Profile: NavRoutes
 }

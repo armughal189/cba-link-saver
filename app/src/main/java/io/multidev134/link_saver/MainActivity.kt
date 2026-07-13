@@ -18,6 +18,7 @@ import io.multidev134.link_saver.features.auth.signup.SignupScreen
 import io.multidev134.link_saver.features.link_details.ui.LinkDetailsScreen
 import io.multidev134.link_saver.features.links_list.ui.LinksListScreen
 import io.multidev134.link_saver.features.more.ui.MoreScreen
+import io.multidev134.link_saver.features.profile.ProfileScreen
 import io.multidev134.link_saver.features.settings.SettingsVM
 import io.multidev134.link_saver.features.settings.ui.SettingsScreen
 import io.multidev134.link_saver.features.settings.ui.handleThemeMode
@@ -85,6 +86,9 @@ class MainActivity : ComponentActivity() {
               }
               entry<NavRoutes.WhatsNew> {
                 WhatsNewScreen()
+              }
+              entry<NavRoutes.Profile> {
+                ProfileScreen()
               }
               entry<NavRoutes.LinkDetails> { route ->
                 LinkDetailsScreen(route.link)
