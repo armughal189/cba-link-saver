@@ -26,8 +26,20 @@ class AuthVM(
         authState.value = AuthState.Success
       } catch (e: Exception) {
         authState.value = AuthState.Error(e.message ?: "Signup Failed because of unknown Reason.")
-      } finally {
-        resetState()
+      }
+    }
+  }
+  fun login(email: String, password: String) {
+    viewModelScope.launch {
+      authState.value = AuthState.Loading
+      try {
+        client.auth.signInWith(Email) {
+          this.email = email
+          this.password = password
+        }
+        authState.value = AuthState.Success
+      } catch (e: Exception) {
+        authState.value = AuthState.Error(e.message ?: "Login Failed because of unknown Reason.")
       }
     }
   }
@@ -38,5 +50,8 @@ class AuthVM(
   }
   fun resetState() {
     authState.value = AuthState.Idle
+  }
+  fun isLoggedIn(): Boolean {
+    return client.auth.currentUserOrNull() != null
   }
 }

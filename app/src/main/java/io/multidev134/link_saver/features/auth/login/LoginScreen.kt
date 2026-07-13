@@ -1,4 +1,4 @@
-package io.multidev134.link_saver.features.auth.signup
+package io.multidev134.link_saver.features.auth.login
 
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
@@ -10,6 +10,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import io.multidev134.link_saver.core.navigation.LocalBackStack
+import io.multidev134.link_saver.core.navigation.NavRoutes
 import io.multidev134.link_saver.features.auth.AuthState
 import io.multidev134.link_saver.features.auth.AuthVM
 import io.multidev134.link_saver.features.auth.getPasswordKeyboardType
@@ -23,7 +24,7 @@ import io.multidev134.reuse_hub.utils.toast
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun SignupScreen(
+fun LoginScreen(
   vm: AuthVM = koinViewModel()
 ) {
   val backStack = LocalBackStack.current
@@ -31,18 +32,12 @@ fun SignupScreen(
   val authState by vm.authState
   var email by rememberSaveable { mutableStateOf("") }
   var password by rememberSaveable { mutableStateOf("") }
-  var confirmPassword by rememberSaveable { mutableStateOf("") }
   var showPassword by rememberSaveable { mutableStateOf(false) }
 
-  val errorMsg = when {
-    confirmPassword != password ->
-      "Both Password Values should be same"
-    else -> validatePassword(password)
-  }
+  val errorMsg = validatePassword(password)
 
-  val canSignUp = email.isNotEmpty() &&
+  val canLogin = email.isNotEmpty() &&
       password.isNotEmpty() &&
-      confirmPassword.isNotEmpty() &&
       errorMsg.isEmpty() &&
       authState !is AuthState.Loading
 
@@ -51,9 +46,10 @@ fun SignupScreen(
   LaunchedEffect(authState) {
     when (val state = authState) {
       is AuthState.Success -> {
-        toast(context, "SignUp Successfull")
+        toast(context, "Login Successful!")
         vm.resetState()
-        backStack.removeLastOrNull()
+        backStack.clear()
+        backStack.add(NavRoutes.Home)
       }
       is AuthState.Error -> {
         toast(context, state.message)
@@ -64,11 +60,11 @@ fun SignupScreen(
   }
 
   CbaLayout(
-    title = "SignUp",
+    title = "Login",
     onBackPress = {
       backStack.removeLastOrNull()
     }) {
-    CbaTextView("Let's create your Account")
+    CbaTextView("Welcome Back! Login to your Account")
     CbaTextField(
       label = "Email:",
       value = email,
@@ -79,12 +75,6 @@ fun SignupScreen(
       label = "Password:",
       value = password,
       onValueChange = { password = it },
-      keyboardType = passwordKeyboardType
-    )
-    CbaTextField(
-      label = "Confirm Password:",
-      value = confirmPassword,
-      onValueChange = { confirmPassword = it },
       keyboardType = passwordKeyboardType
     )
     CbaCheckBox(
@@ -99,10 +89,10 @@ fun SignupScreen(
       CircularProgressIndicator()
     } else {
       CbaButton(
-        label = "SignUp",
-        enabled = canSignUp,
+        label = "Login",
+        enabled = canLogin,
         onClick = {
-          vm.signup(email, password)
+          vm.login(email, password)
         })
     }
   }

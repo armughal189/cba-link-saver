@@ -20,6 +20,8 @@ import io.multidev134.link_saver.features.settings.ui.SettingsScreen
 import io.multidev134.link_saver.features.settings.ui.handleThemeMode
 import io.multidev134.link_saver.features.whats_new.WhatsNewScreen
 import io.multidev134.link_saver.features.auth.signup.SignupScreen
+import io.multidev134.link_saver.features.auth.login.LoginScreen
+import io.multidev134.link_saver.features.welcome.WelcomeScreen
 
 class MainActivity : FragmentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +30,7 @@ class MainActivity : FragmentActivity() {
     handleThemeMode(themeMode)
     super.onCreate(savedInstanceState)
     setContent {
-      val backStack = rememberNavBackStack(NavRoutes.Home)
+      val backStack = rememberNavBackStack(NavRoutes.Welcome)
       val currentRoute = backStack.last()
 
       CompositionLocalProvider(LocalBackStack provides backStack) {
@@ -46,19 +48,24 @@ class MainActivity : FragmentActivity() {
                 icon = { Icon(navItem.icon, contentDescription = navItem.label) }
               )
             }
-          }
-        ) {
+          }) {
           NavDisplay(
             backStack = backStack,
             onBack = {
               backStack.removeLastOrNull()
             },
             entryProvider = entryProvider {
+              entry<NavRoutes.Welcome> {
+                WelcomeScreen()
+              }
               entry<NavRoutes.Home> {
                 LinksListScreen()
               }
               entry<NavRoutes.Signup> {
                 SignupScreen()
+              }
+              entry<NavRoutes.Login> {
+                LoginScreen()
               }
               entry<NavRoutes.More> {
                 MoreScreen()
