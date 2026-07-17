@@ -23,9 +23,9 @@ class SettingsVM(
   var themeMode by mutableStateOf(prefs.getString("theme_mode", "system") ?: "system")
     private set
 
-  fun setThemeMode(newThemeMode: String) {
+  fun updateThemeMode(newThemeMode: String) {
     themeMode = newThemeMode
-    prefs.edit { putString("theme_mode", newThemeMode) }
+    prefs.edit().putString("theme_mode", newThemeMode).apply()
     handleThemeMode(newThemeMode)
   }
 

@@ -78,6 +78,6 @@ class AuthVM(
   }
 
   fun isLoggedIn(): Boolean {
-    return client.auth.currentUserOrNull() != null
+    return !prefs.getString("user_email", null).isNullOrEmpty()
   }
 }

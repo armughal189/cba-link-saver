@@ -51,7 +51,7 @@ fun SettingsScreen(
             val index = themeOptions.indexOf(selectedLabel)
             if (index != -1) {
               val newValue = themeValues[index]
-              vm.setThemeMode(newValue)
+              vm.updateThemeMode(newValue)
             }
           })
         CbaSpacer(16)
